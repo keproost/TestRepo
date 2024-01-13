@@ -1,0 +1,184 @@
+
+Deepen your understanding of market volatility using Bollinger Bands. This tool helps in discerning price movements and volatility trends, essential for crafting effective strategies.
+
+This connectable Bollinger bands indicator is part of an [i]indicator system[/i] designed to help test, visualize and build strategy configurations without coding. Like all [i]connectable indicators[/i], it interacts through the TradingView input source, which serves as a [i]signal connector[/i] to link indicators to each other. All connectable indicators send [i]signal weight[/i] to the next node in the system until it reaches either a [i]connectable signal monitor, signal filter and/or strategy.[/i]
+
+
+█  [b]UNIFORM SETTINGS AND A WAY OF WORK[/b]
+
+Although connectable indicators may have specific weight scoring conditions, they all aim to follow a standardized general approach to weight scoring settings, as outlined below.
+
+ ■ [b]Connectable indicators - Settings[/b]
+
+  [image]https://www.tradingview.com/x/jhS2orDT/[/image]
+
+ • [b]🗲 Energy:[/b] Energy applies an ATR multiplier to the plotted shapes on the chart. A higher value plots shapes farther away from the candle, enhancing visibility.
+ • [b]☼ Brightness:[/b] Brightness determines the opacity of the shape plotted on the chart, aiding visibility. Indicator weight also influences opacity.
+ • [b]→ Input:[/b] Use the input setting to specify a data source for the indicator. Here you can connect the indicator to other indicators.
+ • [b]⌥ Flow:[/b] Determine where you want to receive signals from:
+    ○ Both: Weights from this indicator and the connected indicator will apply
+    ○ Indicator only: Only weights from this indicator will apply
+    ○ Input only: Only weights from the connected indicator will apply
+ • [b]⥅ Weight multiplier:[/b] Multiply all weights in the entire indicator by a given factor, useful for quickly testing different indicators in a granular setup.
+ • [b]⥇ Threshold:[/b] Set a threshold to indicate the minimum amount of weight it should receive to pass it through to the next indicator. 
+ • [b]⥱ Limiter:[/b] Set a hard limit to the maximum amount of weight that can be fed through the indicator. 
+
+■ [b]Connectable indicators - Weight scoring settings[/b]
+
+  [image]https://www.tradingview.com/x/nGdGV9oQ/[/image]
+
+▢ [b]Weight scoring conditions[/b]
+
+• [b]SM – Signal mode:[/b] Enable specific conditions for weight scoring
+   ○ All: All signals will be scored.
+   ○ Entries only: Only entries will score 
+   ○ Exits only: Only exits will score.
+   ○ Entries & exits: Both entries and exits will score. 
+   ○ Zone: Continuous scoring for each candle within the zone. 
+
+• [b]SP – Signal period:[/b] Defines a range of candles within which a signal can score.
+
+• [b]SC - Signal count:[/b] Specifies the number of bars to retrospectively examine and score.
+   ○ Single: Score for a single occurrence
+   ○ All occurrences: Score for all occurrences
+   ○ Single + Threshold: Score for single occurrences within the signal period (SP)
+   ○ Every + Threshold: Score for all occurrences within the signal period (SP)
+
+
+▢ [b]Weight scoring direction[/b]
+
+• [b]ES:[/b] Enter Short weight
+• [b]XL:[/b] Exit long weight
+• [b]EL:[/b] Enter Long weight
+• [b]XS:[/b] Exit Short weight
+
+
+▢ [b]Weight scoring values[/b]
+
+• Weights can hold either positive or negative scores. Positive weights enhance a particular trading direction, while negative weights diminish it.
+
+
+
+█ [b]Bollinger bands - INDICATOR SETTINGS[/b]
+
+
+    [image]https://www.tradingview.com/x/afetFgF8/[/image]
+
+ ■ [b]Main settings[/b]
+
+ • [b]Enable/Disable Indicator:[/b] Toggle the entire indicator on or off.
+ • [b]S - Source:[/b] Choose an alternative data source for the Bollinger bands calculation.
+ • [b]T - Timeframe:[/b] Select an alternative timeframe for the Bollinger bands calculation.
+ • [b]LE - Length:[/b] Determine the period the bollinger bands are calculated on
+ • [b]SD - Standard deviation:[/b] Determine the standard deviation for the bollinger bands.
+ • [b]Enable/Disable plotting:[/b] Toggle the plotting of the Bollinger bands
+ • [b]U:[/b] Choose a color for the upper band
+ • [b]B:[/b] Choose a color for the basis
+ • [b]L:[/b] Choose a color for the lower band
+ • [b]BG:[/b] Choose a color for Bollinger bands background
+
+ ■ [b]Scoring functionality[/b]
+
+  • The Bollinger bands score long entries when the current low price is smaller than the lower band.
+  • The Bollinger bands score long exits when the current high price is higher than the upper band.
+  • The Bollinger bands score long zones the entire time the current low price is smaller than the lower band.
+  • The Bollinger bands score short entries when the current high is higher than the upper band.
+  • The Bollinger bands score short exits when the current low is smaller than the lower band.
+  • The Bollinger bands score short zones the entire time the current high price is higher than the upper band.
+
+
+█ [b]PLOTTING[/b]
+
+ • [b]Standard:[/b] Symbols (EL, XS, ES, XL) appear relative to candles based on set conditions. Their opacity and position vary with weight.
+ • [b]Conditional Settings:[/b] A larger icon appears if global conditions are met. For instance, with a Threshold(⥇) of 12, Signal Period (SP) of 3, and Scoring Condition (SC) set to "EVERY", a Bollinger bands signaling over two times in 3 candles (scoring 6 each) triggers a larger icon.
+
+
+█ [b]USAGE OF CONNECTABLE INDICATORS[/b]
+
+ ■ [b]Connectable chaining mechanism[/b]
+
+Connectable indicators can be connected directly to the [i]signal monitor, signal filter or strategy[/i], or they can be daisy chained to each other while the last indicator in the chain connects to the signal monitor, signal filter or strategy. When using a [i]signal filter[/i] you can chain the filter to the strategy input to make your chain complete.
+
+  [image]https://www.tradingview.com/x/uBE4cTng/[/image]
+
+   • [b]Direct chaining:[/b] Connect an indicator directly to the [i]signal monitor, signal filter or strategy[/i] through the provided inputs (→).
+   • [b]Daisy chaining:[/b] Connect indicators using the indicator input (→). The first in a daisy chain should have a flow (⌥) set to 'Indicator only'. Subsequent indicators use 'Both' to pass the previous weight. The final indicator connects to the [i]signal monitor, signal filter, or strategy.[/i]
+
+
+ ■ [b]Set up this indicator with a signal filter and strategy[/b]
+
+  The indicator provides visual cues based on signal conditions. However, its weight system is best utilized when paired with a connectable [i]signal filter, signal monitor, and/or strategy[/i].
+  
+
+  Let's connect the Bollinger bands to a connectable [i]signal filter[/i] and a [i]strategy[/i]: 
+
+
+  1. [b]Load all relevant indicators[/b] 
+   • Load Bollinger bands / Connectable
+   • Load Signal filter / Connectable
+   • Load Strategy / Connectable
+
+  2. [b]Signal Filter: Connect the Bollinger bands to the Signal Filter[/b] 
+   • Open the signal filter settings
+   • Choose one of the three input dropdowns (1→, 2→, 3→) and choose : Bollinger bands / Connectable: Signal Connector
+   • Toggle the enable box before the connected input to enable the incoming signal
+
+  3. [b]Signal Filter: Update the filter signals settings if needed[/b] 
+   • The default settings of the filter enable EL (Enter Long), XL (Exit Long), ES (Enter Short) and XS (Exit Short).
+
+  4. [b]Signal Filter: Update the weight threshold settings if needed[/b] 
+   • All connectable indicators load by default with a score of 6 for each direction (EL, XL, ES, XS)
+   • By default, weight threshold (TH) is set at 5. This allows each occurrence to score, as the default score in each connectable indicator is 1 point above the threshold. Adjust to your liking.
+
+  5. [b]Strategy: Connect the strategy to the signal filter in the strategy settings[/b] 
+   • Select a strategy input → and select the Signal filter: Signal connector
+
+  6. [b]Strategy: Enable filter compatible directions[/b] 
+   • Set the signal mode of the strategy to a compatible direction with the signal filter. 
+
+   
+
+[quote]
+  Now that everything is connected, you'll notice green spikes in the [i]signal filter[/i] representing long signals, and red spikes indicating short signals. Trades will also appear on the chart, complemented by a performance overview. Your journey is just beginning: delve into different scoring mechanisms, merge diverse connectable indicators, and craft unique chains. Instantly test your results and discover the potential of your configurations. Dive deep and enjoy the process!
+[/quote]
+
+
+
+█ [b]BENEFITS[/b]
+
+• [b]Adaptable Modular Design:[/b] Arrange indicators in diverse structures via direct or daisy chaining, allowing tailored configurations to align with your analysis approach.
+• [b]Streamlined Backtesting:[/b] Simplify the iterative process of testing and adjusting combinations, facilitating a smoother exploration of potential setups.
+• [b]Intuitive Interface:[/b] Navigate TradingView with added ease. Integrate desired indicators, adjust settings, and establish alerts without delving into complex code.
+• [b]Signal Weight Precision:[/b] Leverage granular weight allocation among signals, offering a deeper layer of customization in strategy formulation.
+• [b]Advanced Signal Filtering:[/b] Define entry and exit conditions with more clarity, granting an added layer of strategy precision.
+• [b]Clear Visual Feedback:[/b] Distinct visual signals and cues enhance the readability of charts, promoting informed decision-making.
+• [b]Standardized Defaults:[/b] Indicators are equipped with universally recognized preset settings, ensuring consistency in initial setups across different types like momentum or volatility.
+• [b]Reliability:[/b]  Our indicators are meticulously developed to prevent repainting. We strictly adhere to TradingView's coding conventions, ensuring our code is both performant and clean.
+
+
+█ [b]COMPATIBLE INDICATORS[/b]
+
+  Each indicator that incorporates our open-source 'azLibConnector' library and adheres to our conventions can be effortlessly integrated and used as detailed above. 
+  For clarity and recognition within the TradingView platform, we append the suffix ' / Connectable' to every compatible indicator. 
+
+
+█ [b]COMMON MISTAKES, CLARIFICATIONS AND TIPS[/b]
+
+ • [b]Removing an indicator from a chain:[/b] Deleting a linked indicator and confirming the "remove study tree" alert will also remove all underlying indicators in the object tree. Before removing one, disconnect the adjacent indicators and move it to the object stack's bottom.
+ • [b]Point systems:[/b] The azLibConnector provides 500 points for each direction (EL: Enter long, XL: Exit long, ES: Enter short, XS: Exit short) Remember this cap when devising a point structure.
+ • [b]Flow misconfiguration:[/b] In daisy chains the first indicator should always have a flow (⌥) setting of 'indicator only' while other indicator should have a flow (⌥) setting of 'both'.
+ • [b]Hide attributes:[/b] As connectable indicators send through quite some information you'll notice all the arguments are taking up some screenwidth and cause some visual clutter. You can disable arguments in Chart Settings / Status line.
+ • [b]Layout and abbreviations:[/b] To maintain a consistent structure, we use abbreviations for each input. While this may initially seem complex, you'll quickly become familiar with them. Each abbreviation is also explained in the inline tooltips.
+ • [b]Inputs:[/b] Connecting a connectable indicator directly to the strategy delivers the raw signal without a weight threshold, meaning every signal will trigger a trade.
+
+
+
+█ [b]A NOTE OF GRATITUDE[/b]
+
+  Through years of exploring TradingView and Pine Script, we've drawn immense inspiration from the community's knowledge and innovation. Thank you for being a constant source of motivation and insight.
+
+
+
+█ [b]RISK DISCLAIMER[/b]
+
+  Azullian's content, tools, scripts, articles, and educational offerings are presented purely for educational and informational uses. Please be aware that past performance should not be considered a predictor of future results.
